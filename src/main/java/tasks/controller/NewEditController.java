@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
@@ -141,22 +138,42 @@ public class NewEditController {
 
     @FXML
     public void saveChanges(){
-        Task collectedFieldsTask = collectFieldsData();
-        if (incorrectInputMade) return;
+        try {
+            Task collectedFieldsTask = collectFieldsData();
+            if (incorrectInputMade) return;
 
-        if (currentTask == null){//no task was chosen -> add button was pressed
-            tasksList.add(collectedFieldsTask);
-        }
-        else {
-            for (int i = 0; i < tasksList.size(); i++){
-                if (currentTask.equals(tasksList.get(i))){
-                    tasksList.set(i,collectedFieldsTask);
-                }
+            if (currentTask == null) {
+                service.addTask(collectedFieldsTask);
+            } else {
+                service.updateTask(currentTask, collectedFieldsTask);
+                currentTask = null;
             }
-            currentTask = null;
+            Controller.editNewStage.close();
+        } catch (RuntimeException e) {
+            showErrorDialog(e);
         }
-        TaskIO.rewriteFile(tasksList);
-        Controller.editNewStage.close();
+    }
+
+    private void showErrorDialog(Exception e) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/error-dialog.fxml"));
+            Parent root = loader.load();
+            ErrorDialogController controller = loader.getController();
+            controller.setErrorMessage(e.getMessage());
+            stage.setScene(new Scene(root, 350, 150));
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException ioe) {
+            // Dacă nu putem afișa fereastra, folosim un Alert simplu
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Operation Failed");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            log.error("error loading error-dialog.fxml", ioe);
+        }
     }
     @FXML
     public void closeDialogWindow(){

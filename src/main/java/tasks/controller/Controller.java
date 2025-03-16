@@ -107,8 +107,9 @@ public class Controller {
     @FXML
     public void deleteTask(){
         Task toDelete = (Task)tasks.getSelectionModel().getSelectedItem();
-        tasksList.remove(toDelete);
-        TaskIO.rewriteFile(tasksList);
+//        tasksList.remove(toDelete);
+//        TaskIO.rewriteFile(tasksList);
+        service.deleteTask(toDelete);
     }
     @FXML
     public void showDetailedInfo(){

@@ -7,3 +7,22 @@
 2025-03-08 15:06:00 INFO  Main:35 - saved data reading
 2025-03-08 15:06:00 INFO  Main:40 - application start
 2025-03-08 15:06:01 INFO  Controller:74 - Main controller initializing
+2025-03-16 17:18:23 INFO  Main:35 - saved data reading
+2025-03-16 17:18:23 INFO  Main:40 - application start
+2025-03-16 17:18:23 INFO  Controller:74 - Main controller initializing
+2025-03-16 17:18:25 INFO  NewEditController:89 - new/edit window initializing
+2025-03-16 17:19:07 INFO  Main:35 - saved data reading
+2025-03-16 17:19:07 INFO  Main:40 - application start
+2025-03-16 17:19:08 INFO  Controller:74 - Main controller initializing
+2025-03-16 17:19:37 INFO  Main:35 - saved data reading
+2025-03-16 17:19:37 INFO  Main:40 - application start
+2025-03-16 17:19:38 INFO  Controller:74 - Main controller initializing
+2025-03-16 17:24:34 INFO  Main:35 - saved data reading
+2025-03-16 17:24:34 INFO  Main:40 - application start
+2025-03-16 17:24:34 INFO  Controller:74 - Main controller initializing
+2025-03-16 17:38:52 INFO  Main:35 - saved data reading
+2025-03-16 17:38:52 INFO  Main:40 - application start
+2025-03-16 17:38:52 INFO  Controller:74 - Main controller initializing
+2025-03-16 17:38:54 INFO  NewEditController:86 - new/edit window initializing
+2025-03-16 17:38:56 ERROR TasksService:123 - Validation error when adding task: Validation failed: Title cannot be empty
+2025-03-16 17:39:01 INFO  NewEditController:86 - new/edit window initializing
