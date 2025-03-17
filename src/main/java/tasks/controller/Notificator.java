@@ -20,43 +20,35 @@ public class Notificator extends Thread {
     public Notificator(ObservableList<Task> tasksList){
         this.tasksList=tasksList;
     }
+    private volatile boolean running = true; // Variabilă de control
 
     @Override
     public void run() {
         Date currentDate = new Date();
-        while (true) {
-
+        while (running) {
             for (Task t : tasksList) {
                 if (t.isActive()) {
-                    if (t.isRepeated() && t.getEndTime().after(currentDate)){
-
-                        Date next = t.nextTimeAfter(currentDate);
-                        long currentMinute = getTimeInMinutes(currentDate);
-                        long taskMinute = getTimeInMinutes(next);
-                        if (currentMinute == taskMinute){
-                            showNotification(t);
-                        }
-                    }
-                    else {
-                        if (!t.isRepeated()){
-                            if (getTimeInMinutes(currentDate) == getTimeInMinutes(t.getTime())){
-                                showNotification(t);
-                            }
-                        }
-
+                    Date next = t.nextTimeAfter(currentDate);
+                    if (next != null && getTimeInMinutes(currentDate) == getTimeInMinutes(next)) {
+                        showNotification(t);
                     }
                 }
-
             }
             try {
-                Thread.sleep(millisecondsInSec*secondsInMin);
-
+                Thread.sleep(millisecondsInSec * secondsInMin);
             } catch (InterruptedException e) {
-                log.error("thread interrupted exception");
+                log.error("Thread interrupted", e);
+                running = false; // Corecție: Setează `running` pe `false` pentru oprire
             }
             currentDate = new Date();
         }
     }
+
+    // Metodă pentru oprirea thread-ului
+    public void stopNotifier() {
+        running = false;
+    }
+
     public static void showNotification(Task task){
         log.info("push notification showing");
         Platform.runLater(() -> {

@@ -207,5 +207,4 @@ public class NewEditController {
         return result;
     }
 
-
 }

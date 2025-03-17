@@ -136,12 +136,25 @@ public class ArrayTaskList extends TaskList{
                 '}';
     }
     @Override
+    @Deprecated
     protected ArrayTaskList clone() throws CloneNotSupportedException {
-        ArrayTaskList tasks = new ArrayTaskList();
-        for (int i = 0; i < this.tasks.length; i++){
-            tasks.add(this.getTask(i));
-        }
-        return tasks;
-
+        throw new CloneNotSupportedException("Use copy() instead");
     }
+
+    // Constructor de copiere explicit
+    public ArrayTaskList(ArrayTaskList other) {
+        this.currentCapacity = other.currentCapacity;
+        this.numberOfTasks = other.numberOfTasks;
+        this.tasks = new Task[currentCapacity];
+
+        for (int i = 0; i < other.numberOfTasks; i++) {
+            this.tasks[i] = new Task(other.tasks[i]);
+        }
+    }
+
+    // Metodă copy() în loc de clone()
+    public ArrayTaskList copy() {
+        return new ArrayTaskList(this);
+    }
+
 }

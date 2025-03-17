@@ -31,6 +31,12 @@ public class Task implements Serializable, Cloneable {
         this.start = time;
         this.end = time;
     }
+    public Task(Task other) {
+        this.title = other.title;
+        this.time = new Date(other.time.getTime()); // Copie profundă a datei
+        this.start = new Date(other.start.getTime());
+        this.end = new Date(other.end.getTime());
+    }
     public Task(String title, Date start, Date end, int interval){
         if (start.getTime() < 0 || end.getTime() < 0) {
             log.error("time below bound");
@@ -91,6 +97,7 @@ public class Task implements Serializable, Cloneable {
         this.interval = interval;
 
     }
+
     public boolean isRepeated(){
         return !(this.interval == 0);
 
