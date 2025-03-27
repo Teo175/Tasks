@@ -46,6 +46,10 @@ public class Task implements Serializable, Cloneable {
             log.error("interval < than 1");
             throw new IllegalArgumentException("interval should me > 1");
         }
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be empty");
+        }
+
         this.title = title;
         this.start = start;
         this.end = end;
