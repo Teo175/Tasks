@@ -4,19 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tasks.model.ArrayTaskList;
 import tasks.model.Task;
+import tasks.model.TaskList;
 import tasks.validators.TaskValidator;
 
 import java.util.Date;
 
 public class TasksService {
 
-    private ArrayTaskList tasks;
+  //  private ArrayTaskList tasks;
+    private TaskList tasks;
 
     private static final Logger log = Logger.getLogger(TasksService.class.getName());
     private ObservableList<Task> observableList;
     private TaskValidator validator;
 
-    public TasksService(ArrayTaskList tasks){
+    public TasksService(TaskList tasks){
         this.tasks = tasks;
         this.validator = new TaskValidator();
     }

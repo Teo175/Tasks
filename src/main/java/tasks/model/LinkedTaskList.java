@@ -58,7 +58,7 @@ public class LinkedTaskList  extends TaskList {
         }
 
         Node cursor = last;
-        if (last.getTask().equals(task)) this.last = last.getLast();
+        if (last!=null && last.getTask().equals(task)) this.last = last.getLast();
         int tasksToCheck = size();
         while (tasksToCheck > 0 && !task.equals(cursor.getTask())){
             cursor = cursor.getLast();
