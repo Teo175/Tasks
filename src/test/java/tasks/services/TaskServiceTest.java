@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("TasksService Test Suite")
 @TestMethodOrder(OrderAnnotation.class)
-class TasksServiceTest {
+class TaskServiceTest {
 
     private TasksService tasksService;
     private ArrayTaskList taskList;
