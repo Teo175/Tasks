@@ -120,6 +120,11 @@
             --add-opens tasks/tasks.model=ALL-UNNAMED
             --add-opens tasks/tasks.services=ALL-UNNAMED
           </argLine>
+          <testFailureIgnore>false</testFailureIgnore>
+          <skip>false</skip>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
         </configuration>
       </plugin>
 
