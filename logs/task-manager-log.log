@@ -70,3 +70,4 @@
 2025-04-12 13:27:32 ERROR LinkedTaskList:56 - removing task that doesn't exist
 2025-05-08 15:55:36 ERROR Task:26 - time below bound
 2025-05-08 15:55:36 ERROR Task:46 - interval < than 1
+2025-05-08 20:05:54 ERROR LinkedTaskList:56 - removing task that doesn't exist
